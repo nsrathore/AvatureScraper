@@ -91,8 +91,8 @@ public sealed class FeedParser(ILogger<FeedParser> logger)
             ApplyUrl       = !string.IsNullOrEmpty(link) ? link.Trim()
                              : $"{site.BaseUrl}{site.CareerPath}/JobDetail?jobId={jobId}",
             Location       = location.Trim(),
-            Description    = descText.Length > 2_000
-                             ? descText[..2_000] : descText,
+            Description    = descText.Length > 5_000
+                             ? descText[..5_000] : descText,
             DatePosted     = pubDate.Trim(),
             JobType        = jobType.Trim(),
             Department     = dept.Trim(),
