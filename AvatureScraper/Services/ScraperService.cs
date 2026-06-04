@@ -21,7 +21,7 @@ public sealed class ScraperService(
     // ── Avature URL builders ──────────────────────────────────────────────────
 
     private const int JobsPerPage    = 100;
-    private const int MaxPagesPerSite = 20;   // safety cap → 5,000 jobs/site
+    private const int MaxPagesPerSite = 50;   // safety cap → 5,000 jobs/site
 
     private static string FeedUrl(string baseUrl, string careerPath, int offset) =>
         $"{baseUrl}{careerPath}/SearchJobs/feed/?jobRecordsPerPage={JobsPerPage}&jobOffset={offset}";
