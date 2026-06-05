@@ -18,15 +18,15 @@ builder.Logging.AddSimpleConsole(opts =>
     opts.SingleLine      = true;
 });
 builder.Logging.SetMinimumLevel(LogLevel.Information);
+builder.Logging.AddFilter("System.Net.Http", LogLevel.Warning);
 
 // ── HttpClient configuration ──────────────────────────────────────────────────
 
-// Polly retry policy: 2 retries with exponential back-off (2s, 4s)
-// Only retries on transient HTTP errors and 429 / 5xx responses.
+// Polly retry policy: 1 retry with a short delay.
+// Only retries on transient network errors (not 4xx/5xx — those are skipped immediately).
 var retryPolicy = HttpPolicyExtensions
     .HandleTransientHttpError()
-    .OrResult(r => r.StatusCode == System.Net.HttpStatusCode.TooManyRequests)
-    .WaitAndRetryAsync(2, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
+    .WaitAndRetryAsync(1, _ => TimeSpan.FromSeconds(2));
 
 // Scraper client: aggressive timeout, connection pooling via IHttpClientFactory
 builder.Services

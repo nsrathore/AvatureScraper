@@ -34,13 +34,15 @@ public sealed class SiteDiscoveryService(
     public static readonly string[] CareerPathCandidates =
     [
         "/careers",
+        "/talent",
+        "/jobs",
+        "/career",
         "/en_US/careers",
         "/en_GB/careers",
-        "/ExternalCareers",
         "/Careers",
+        "/ExternalCareers",
         "/es_ES/Careers",
         "/pt_PT/careers",
-        "/jobs"
     ];
 
     // ── Public API ────────────────────────────────────────────────────────────

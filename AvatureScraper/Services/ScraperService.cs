@@ -196,7 +196,7 @@ public sealed class ScraperService(
 
             return await response.Content.ReadAsStringAsync(ct);
         }
-        catch (OperationCanceledException) { throw; }
+        catch (OperationCanceledException) when (ct.IsCancellationRequested) { throw; }
         catch (Exception ex)
         {
             logger.LogDebug("Fetch error {Url}: {Msg}", url, ex.Message);
