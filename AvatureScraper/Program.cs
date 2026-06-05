@@ -26,14 +26,7 @@ builder.Logging.SetMinimumLevel(LogLevel.Information);
 var retryPolicy = HttpPolicyExtensions
     .HandleTransientHttpError()
     .OrResult(r => r.StatusCode == System.Net.HttpStatusCode.TooManyRequests)
-    .WaitAndRetryAsync(
-        retryCount: 2,
-        sleepDurationProvider: (attempt, outcome, _) =>
-        {
-            // Respect Retry-After header if present
-            var retryAfter = outcome.Result?.Headers.RetryAfter?.Delta;
-            return retryAfter ?? TimeSpan.FromSeconds(Math.Pow(2, attempt));
-        });
+    .WaitAndRetryAsync(2, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
 
 // Scraper client: aggressive timeout, connection pooling via IHttpClientFactory
 builder.Services

@@ -17,7 +17,7 @@ namespace AvatureScraper.Services;
 /// </summary>
 public sealed class FeedParser(ILogger<FeedParser> logger)
 {
-    private static readonly HtmlParser HtmlParser = new();
+    private static readonly AngleSharp.Html.Parser.HtmlParser HtmlParser = new();
 
     private static readonly Regex JobIdFromUrlRe = new(
         @"/(\d+)(?:[/?#]|$)", RegexOptions.Compiled);
