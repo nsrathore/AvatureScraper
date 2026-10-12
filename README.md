@@ -1,6 +1,8 @@
-# Avature ATS Scraper — C# / .NET 8
+# Avature ATS Scraper — C# / .NET 10
 
-Production-grade async scraper for Avature-powered career pages, built with
+Concurrent job-data pipeline for Avature-powered career sites. It discovers
+sites from certificate-transparency logs and Common Crawl, pulls RSS feeds with
+an HTML fallback, and writes deduplicated jobs to JSONL and CSV. Built with
 idiomatic .NET patterns: `IHttpClientFactory`, Polly retry policies, `AngleSharp`
 HTML parsing, and `CsvHelper` output.
 
@@ -9,7 +11,7 @@ HTML parsing, and `CsvHelper` output.
 ## Quick Start
 
 ```bash
-# Prerequisites: .NET 8 SDK (https://dotnet.microsoft.com/download)
+# Prerequisites: .NET 10 SDK (https://dotnet.microsoft.com/download)
 
 cd AvatureScraper
 
